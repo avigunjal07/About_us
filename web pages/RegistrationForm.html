@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient Registration</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image:url(../images/hospitalbg.png);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .registration-container {
+
+        margin-top: 50px;
+        margin-bottom: 50px;
+      background: white;
+      padding: 40px 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      width: 400px;
+      border: #3be6aa 2px solid;
+    }
+
+    .registration-container h2 {
+      text-align: center;
+      color: #3be6aa;
+      margin-bottom: 25px;
+      margin-top: -5px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    input, select {
+      padding: 12px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: #3be6aa;
+    }
+
+    button {
+      padding: 12px;
+      background: #3be6aa;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #32c89e;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="registration-container">
+    <h2>Patient Registration</h2>
+    <form id="registrationForm">
+      <input type="text" name="name" placeholder="Full Name" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="text" name="address" placeholder="Address" required>
+      <input type="text" name="bloodGroup" placeholder="Blood Group (e.g., A+)" required>
+      <label for="dob">Date of Birth:</label>
+      <input type="date" name="dob" id="dob" required>
+
+      <label for="caste">Caste:</label>
+      <select name="caste" id="caste" required>
+        <option value="" disabled selected>Select Caste</option>
+        <option value="General">General</option>
+        <option value="OBC">OBC</option>
+        <option value="SC">SC</option>
+        <option value="ST">ST</option>
+        <option value="NT-A">NT-A</option>
+        <option value="NT-B">NT-B</option>
+        <option value="NT-C">NT-C</option>
+        <option value="NT-D">NT-D</option>
+      </select>
+
+      <label for="ageGroup">Age Group:</label>
+      <select name="ageGroup" id="ageGroup" required>
+        <option value="" disabled selected>Select Age Group</option>
+        <option value="1-5">1 to 5</option>
+        <option value="5-14">5 to 14</option>
+        <option value="15-25">15 to 25</option>
+        <option value="25-50">25 to 50</option>
+        <option value="50+">50+</option>
+      </select>
+
+      <button type="submit">Register</button>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById('registrationForm');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert("Registration submitted successfully!");
+      form.reset();
+    });
+  </script>
+
+</body>
+</html>
