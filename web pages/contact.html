@@ -3,198 +3,532 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Us</title>
+  <title>Contact Us - CareConnect</title>
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Google Fonts: Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --primary-grad-start: #8e2de2;
+      --primary-grad-end: #4a00e0;
+      --secondary-grad-start: #ffc837;
+      --secondary-grad-end: #ff8008;
+      --accent-color: #3be6aa;
+      --text-dark: #333;
+      --text-light: #888;
+      --bg-white: #fff;
+      --bg-light-gray: #f5f5f5;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
       background: #f9f9f9;
       color: #333;
+      position: relative;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* Particles Background */
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      background-color: #f0f2f5;
+    }
+
+    /* Header Section */
+    .contact-header {
+      background: linear-gradient(135deg, var(--primary-grad-start), var(--primary-grad-end));
+      color: white;
+      padding: 40px 0;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-header h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      z-index: 2;
+      position: relative;
+    }
+
+    .contact-header p {
+      font-size: 1.1rem;
+      font-weight: 400;
+      max-width: 600px;
+      margin: 0 auto;
+      z-index: 2;
+      position: relative;
+    }
+
+    /* Decorative Shapes */
+    .shape {
+      position: absolute;
+      border-radius: 50px;
+      background: linear-gradient(135deg, var(--secondary-grad-start), var(--secondary-grad-end));
+      opacity: 0.2;
+      transition: all 0.4s ease-in-out;
+    }
+
+    .shape.s1 {
+      width: 150px;
+      height: 20px;
+      transform: rotate(-45deg);
+      bottom: 15%;
+      left: -20px;
+    }
+    .shape.s2 {
+      width: 200px;
+      height: 25px;
+      transform: rotate(-45deg);
+      bottom: 25%;
+      left: 10%;
+    }
+    .shape.s3 {
+      width: 100px;
+      height: 15px;
+      transform: rotate(-45deg);
+      bottom: 10%;
+      left: 50%;
+    }
+
+    /* Hover effect for the header */
+    .contact-header:hover .shape.s1 {
+      transform: rotate(-45deg) translate(-30px, -30px);
+    }
+    .contact-header:hover .shape.s2 {
+      transform: rotate(-45deg) translate(30px, 30px);
+    }
+    .contact-header:hover .shape.s3 {
+      transform: rotate(-45deg) translate(-25px, 25px);
+    }
+
+    /* Home Button */
+    .goto {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: white;
+      color: var(--primary-grad-end);
+      border: none;
+      border-radius: 50px;
+      padding: 10px 25px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      z-index: 10;
+    }
+
+    .goto:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      background: linear-gradient(135deg, var(--secondary-grad-start), var(--secondary-grad-end));
+      color: white;
     }
 
     /* Contact Form Section */
     .contact-container {
-      text-align: center;
-      padding: 10px;
+      max-width: 900px;
+      margin: 50px auto;
+      padding: 0 20px;
     }
 
-    .contact-container h1 {
-      font-size: 32px;
-      margin-bottom: 10px;
+    .contact-content {
+      display: flex;
+      background: var(--bg-white);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .contact-container p {
-      margin-bottom: 30px;
-      color: #555;
+    .contact-content:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    }
+
+    .form-section {
+      flex: 1;
+      padding: 40px;
     }
 
     .contact-form {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      gap: 15px;
-      margin-bottom: 20px;
+      gap: 20px;
     }
 
     .input-row {
       display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-      justify-content: center;
+      gap: 20px;
     }
 
-    .contact-form input {
-      padding: 12px 15px;
-      border-radius: 25px;
-      border: 1px solid #ccc;
+    .input-group {
+      flex: 1;
+      position: relative;
+    }
+
+    .input-group i {
+      position: absolute;
+      top: 50%;
+      left: 15px;
+      transform: translateY(-50%);
+      color: var(--text-light);
+      z-index: 2;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 15px 15px 15px 45px;
+      border: none;
+      background-color: var(--bg-light-gray);
+      border-radius: 50px;
+      font-size: 1rem;
+      color: var(--text-dark);
       outline: none;
-      width: 250px;
+      transition: box-shadow 0.3s ease;
     }
 
     .contact-form textarea {
-      width: 520px;
-      height: 100px;
-      padding: 12px 15px;
+      border-radius: 20px;
+      height: 120px;
       resize: none;
-      border-radius: 15px;
-      border: 1px solid #ccc;
-      outline: none;
-      font-family: Arial, sans-serif;
-      font-size: 14px;
+      padding-top: 15px;
+    }
+
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder {
+      color: var(--text-light);
     }
 
     .contact-form input:focus,
     .contact-form textarea:focus {
-      border-color: #3be6aa;
-      box-shadow: 0 0 6px rgba(59, 230, 170, 0.4);
+      box-shadow: 0 0 0 2px var(--primary-grad-end);
     }
 
     .submit-btn {
-      margin-top: 5px;
-      margin-bottom: 10px;
-      background: #3be6aa;
-      color: white;
+      width: 100%;
+      padding: 15px;
       border: none;
-      border-radius: 25px;
-      padding: 12px 40px;
+      border-radius: 50px;
+      background: linear-gradient(135deg, var(--primary-grad-start), var(--primary-grad-end));
+      color: var(--bg-white);
+      font-size: 1rem;
+      font-weight: 600;
+      text-transform: uppercase;
       cursor: pointer;
-      transition: 0.3s;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(74, 0, 224, 0.3);
+      margin-top: 10px;
     }
 
     .submit-btn:hover {
-      background: #2ccf97;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(74, 0, 224, 0.4);
+    }
+    
+    .submit-btn:active {
+      transform: translateY(-1px);
     }
 
     /* Info Section */
     .info-section {
+      background: linear-gradient(135deg, var(--primary-grad-start), var(--primary-grad-end));
+      color: white;
+      padding: 60px 20px;
+      margin-top: 50px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .info-content {
       display: flex;
       justify-content: space-around;
-      align-items: center;
-      background: #3be6aa;
-      color: white;
-      padding: 40px 20px;
+      align-items: flex-start;
+      max-width: 1200px;
+      margin: 0 auto;
       flex-wrap: wrap;
-      margin-top: -20px;
+      gap: 30px;
+      position: relative;
+      z-index: 2;
     }
 
     .info-box {
       text-align: center;
       flex: 1;
-      min-width: 220px;
-      margin: 15px;
+      min-width: 250px;
+      padding: 30px 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
     }
 
-    .info-box img {
-      width: 60px;
-      height: 60px;
-      margin-bottom: 15px;
+    .info-box:hover {
+      transform: translateY(-10px);
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .info-box .icon-container {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 20px;
       background: white;
-      padding: 10px;
       border-radius: 50%;
-      margin-top: -40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .info-box:hover .icon-container {
+      transform: scale(1.1);
+      background: linear-gradient(135deg, var(--secondary-grad-start), var(--secondary-grad-end));
+    }
+
+    .info-box .icon-container i {
+      font-size: 2rem;
+      color: var(--primary-grad-end);
+      transition: all 0.3s ease;
+    }
+
+    .info-box:hover .icon-container i {
+      color: white;
     }
 
     .info-box h3 {
       margin: 10px 0;
-      font-size: 20px;
+      font-size: 1.4rem;
+      font-weight: 600;
     }
 
     .info-box p,
     .info-box a {
       margin: 5px 0;
-      font-size: 14px;
+      font-size: 1rem;
       color: white;
       text-decoration: none;
-    }
-
-    .homeb{
-      font-size: 14px;
-      padding-left: 25px;
-      padding-right: 25px;
-    }
-
-    .goto{
-margin-left: 1000px;
-margin-top: 10px;
-color: #3be6aa;
-  background-color: white;
-  border:#3be6aa solid;
-  border-radius: 25px;
-  padding-left: 8px;
-  padding-right: 8px;
-  cursor: pointer;
-  padding-top: 5px;
-  padding-bottom: 5px;
+      transition: all 0.3s ease;
     }
 
     .info-box a:hover {
+      color: var(--secondary-grad-start);
       text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, var(--primary-grad-start), var(--primary-grad-end));
+      color: white;
+      text-align: center;
+      padding: 25px;
+      position: relative;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .contact-header h1 {
+        font-size: 2.2rem;
+      }
+      
+      .input-row {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .contact-content {
+        flex-direction: column;
+      }
+      
+      .form-section {
+        padding: 30px;
+      }
+      
+      .info-content {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .info-box {
+        width: 100%;
+        max-width: 350px;
+      }
+      
+      .goto {
+        position: relative;
+        top: auto;
+        right: auto;
+        margin: 20px auto;
+        display: block;
+        width: fit-content;
+      }
     }
   </style>
 </head>
 <body>
-  <a href="../index.html">
-<button class="goto">
-  <span class="homeb">Go to Home</span>
-  </button></a>
-  <div class="contact-container">
-    <h1>Contact Us </h1> 
+
+  <!-- Container for the live background -->
+  <div id="particles-js"></div>
+
+  <div class="contact-header">
+    <div class="shape s1"></div>
+    <div class="shape s2"></div>
+    <div class="shape s3"></div>
+    <a href="../index.html">
+      <button class="goto">
+        <span class="homeb">Go to Home</span>
+      </button>
+    </a>
+    <h1>Contact Us</h1>
     <p>Any questions or remarks? Just write us a message!</p>
-    
-    <form class="contact-form">
-      <!-- Row 1 -->
-      <div class="input-row">
-        <input type="email" placeholder="Enter a valid email address" required>
-        <input type="text" placeholder="Enter your Name" required>
+  </div>
+
+  <div class="contact-container">
+    <div class="contact-content">
+      <div class="form-section">
+        <form class="contact-form">
+          <div class="input-row">
+            <div class="input-group">
+              <i class="fas fa-envelope"></i>
+              <input type="email" placeholder="Enter a valid email address" required>
+            </div>
+            <div class="input-group">
+              <i class="fas fa-user"></i>
+              <input type="text" placeholder="Enter your Name" required>
+            </div>
+          </div>
+          <div class="input-group">
+            <i class="fas fa-pen"></i>
+            <textarea placeholder="Write your message here..." required></textarea>
+          </div>
+          <button type="submit" class="submit-btn">SUBMIT</button>
+        </form>
       </div>
-      <!-- Row 2 -->
-      <textarea placeholder="Write your message here..." required></textarea>
-      <!-- Row 3 -->
-      <button type="submit" class="submit-btn">SUBMIT</button>
-    </form>
+    </div>
   </div>
 
   <div class="info-section">
-    <div class="info-box">
-      <img src="../images/gmail.png" alt="Gmail Icon">
-      <h3>Mail us</h3>
-      <a href="mailto:avishkargunjal07@email.com" target="_blank">
-        avishkargunjal07@gmail.com
-      </a>
-    </div>
-    <div class="info-box">
-      <img src="../images/circle.png" alt="Phone Icon">
-      <h3>PHONE </h3>
-      <p>+ 912 3 567 8987</p>
-      <p>+ 912 5 252 3336</p>
-    </div>
-    <div class="info-box">
-      <img src="../images/map.png" alt="Map Icon">
-      <h3>OUR LOCATION</h3>
-      <a href="https://maps.app.goo.gl/cfQpayTs7BzLdcyo6" target="_blank">View Map here</a>
-
+    <div class="info-content">
+      <div class="info-box">
+        <div class="icon-container">
+          <i class="fas fa-envelope"></i>
+        </div>
+        <h3>Mail us</h3>
+        <a href="mailto:avishkargunjal07@email.com" target="_blank">
+          avishkargunjal07@gmail.com
+        </a>
+      </div>
+      <div class="info-box">
+        <div class="icon-container">
+          <i class="fas fa-phone"></i>
+        </div>
+        <h3>PHONE</h3>
+        <p>+ 912 3 567 8987</p>
+        <p>+ 912 5 252 3336</p>
+      </div>
+      <div class="info-box">
+        <div class="icon-container">
+          <i class="fas fa-map-marker-alt"></i>
+        </div>
+        <h3>OUR LOCATION</h3>
+        <a href="https://maps.app.goo.gl/cfQpayTs7BzLdcyo6" target="_blank">View Map here</a>
+      </div>
     </div>
   </div>
+
+  <footer>
+    <p>&copy; 2025 CareConnect. All Rights Reserved.</p>
+  </footer>
+
+  <!-- Script for the live background -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    particlesJS("particles-js", {
+      "particles": {
+        "number": {
+          "value": 80,
+          "density": {
+            "enable": true,
+            "value_area": 800
+          }
+        },
+        "color": {
+          "value": "#4a00e0"
+        },
+        "shape": {
+          "type": "circle"
+        },
+        "opacity": {
+          "value": 0.5,
+          "random": true
+        },
+        "size": {
+          "value": 3,
+          "random": true
+        },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#8e2de2",
+          "opacity": 0.4,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 2,
+          "direction": "none",
+          "random": false,
+          "straight": false,
+          "out_mode": "out",
+          "bounce": false
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": {
+            "enable": true,
+            "mode": "grab"
+          },
+          "onclick": {
+            "enable": true,
+            "mode": "push"
+          },
+          "resize": true
+        },
+        "modes": {
+          "grab": {
+            "distance": 140,
+            "line_linked": {
+              "opacity": 1
+            }
+          },
+          "push": {
+            "particles_nb": 4
+          }
+        }
+      },
+      "retina_detect": true
+    });
+  </script>
 
 </body>
 </html>
